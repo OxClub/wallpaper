@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Wallify</string>
+    <string name="tab_explore">Explore</string>
+    <string name="tab_categories">Categories</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
+    <string name="download">Download</string>
+    <string name="set_home">Home Screen</string>
+    <string name="set_lock">Lock Screen</string>
+    <string name="set_both">Both</string>
+    <string name="wallpaper_set_success">Wallpaper set successfully</string>
+    <string name="wallpaper_set_failed">Couldn\'t set wallpaper, try again</string>
+</resources>
