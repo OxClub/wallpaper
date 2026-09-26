@@ -6,5 +6,5 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="8dp"
     android:checkable="true"
-    android:textColor="@color/white"
-    app:chipBackgroundColor="@color/chip_unselected" />
+    android:textColor="@color/chip_text_selector"
+    app:chipBackgroundColor="@color/chip_background_selector" />
