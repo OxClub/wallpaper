@@ -1,0 +1,3 @@
+# Copy this file to local.properties (which is gitignored) for local builds.
+sdk.dir=/path/to/your/Android/sdk
+pixabay.api.key=YOUR_PIXABAY_API_KEY_HERE

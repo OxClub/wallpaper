@@ -1,13 +1,15 @@
 <resources>
-    <string name="app_name">Wallify</string>
-    <string name="tab_explore">Explore</string>
-    <string name="tab_categories">Categories</string>
-    <string name="tab_favorites">Favorites</string>
+    <string name="app_name">Wallpaper HD 4K</string>
+    <string name="search_hint">Search wallpapers…</string>
     <string name="set_wallpaper">Set Wallpaper</string>
     <string name="download">Download</string>
-    <string name="set_home">Home Screen</string>
-    <string name="set_lock">Lock Screen</string>
-    <string name="set_both">Both</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="both_screens">Home + Lock Screen</string>
+    <string name="choose_wallpaper_for">Set wallpaper for</string>
     <string name="wallpaper_set_success">Wallpaper set successfully</string>
-    <string name="wallpaper_set_failed">Couldn\'t set wallpaper, try again</string>
+    <string name="wallpaper_set_failed">Failed to set wallpaper</string>
+    <string name="download_started">Downloading wallpaper…</string>
+    <string name="no_results">No wallpapers found</string>
+    <string name="only_4k">4K Only</string>
 </resources>

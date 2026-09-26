@@ -1,4 +1,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_dark">#FF121212</color>
+    <color name="surface_dark">#FF1E1E1E</color>
+    <color name="accent">#FF6C63FF</color>
+    <color name="chip_selected">#FF6C63FF</color>
+    <color name="chip_unselected">#FF2A2A2A</color>
+    <color name="text_secondary">#FFB3B3B3</color>
+    <color name="ic_launcher_background">#FF121212</color>
 </resources>
