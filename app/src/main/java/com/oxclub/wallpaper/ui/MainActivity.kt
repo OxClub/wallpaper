@@ -2,12 +2,17 @@ package com.oxclub.wallpaper.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.oxclub.wallpaper.BuildConfig
 import com.oxclub.wallpaper.databinding.ActivityMainBinding
 import com.oxclub.wallpaper.model.PixabayImage
 import com.oxclub.wallpaper.network.WallpaperRepository
@@ -17,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var wallpaperAdapter: WallpaperAdapter
+    private var adView: AdView? = null
 
     private val loadedItems = mutableListOf<PixabayImage>()
     private var currentCategory = WallpaperRepository.categories.first()
@@ -33,10 +39,56 @@ class MainActivity : AppCompatActivity() {
         setupCategoryList()
         setupWallpaperGrid()
         setupSearch()
+        setupBannerAd()
 
         binding.swipeRefresh.setOnRefreshListener { reload() }
 
         loadNextPage()
+    }
+
+    /**
+     * Large anchored adaptive banner, anchored to the bottom of the main screen.
+     * Debug builds use Google's public test ad unit ID; release builds use the
+     * real one, so ads are never live during development/testing.
+     */
+    private fun setupBannerAd() {
+        val bannerAdUnitId = if (BuildConfig.DEBUG) {
+            BuildConfig.BANNER_AD_UNIT_ID_TEST
+        } else {
+            BuildConfig.BANNER_AD_UNIT_ID_RELEASE
+        }
+
+        val view = AdView(this)
+        view.adUnitId = bannerAdUnitId
+        view.setAdSize(getAdaptiveBannerAdSize())
+        adView = view
+
+        binding.adContainer.removeAllViews()
+        binding.adContainer.addView(view)
+        view.loadAd(AdRequest.Builder().build())
+    }
+
+    private fun getAdaptiveBannerAdSize(): AdSize {
+        val displayMetrics: DisplayMetrics = resources.displayMetrics
+        val adWidthPixels = binding.adContainer.width.takeIf { it > 0 } ?: displayMetrics.widthPixels
+        val density = displayMetrics.density
+        val adWidth = (adWidthPixels / density).toInt()
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+    }
+
+    override fun onPause() {
+        adView?.pause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adView?.resume()
+    }
+
+    override fun onDestroy() {
+        adView?.destroy()
+        super.onDestroy()
     }
 
     private fun setupCategoryList() {

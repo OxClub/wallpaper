@@ -17,16 +17,21 @@ val pixabayApiKey: String = (project.findProperty("PIXABAY_API_KEY") as String?)
 
 android {
     namespace = "com.oxclub.wallpaper"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.oxclub.wallpaper"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
 
         buildConfigField("String", "PIXABAY_API_KEY", "\"$pixabayApiKey\"")
+        // Real ad unit ID is only used in release builds. Debug builds use Google's
+        // official public test banner ID to avoid serving live ads / invalid traffic
+        // during development, per AdMob policy.
+        buildConfigField("String", "BANNER_AD_UNIT_ID_RELEASE", "\"ca-app-pub-6509298197152386/5618079130\"")
+        buildConfigField("String", "BANNER_AD_UNIT_ID_TEST", "\"ca-app-pub-3940256099942544/6300978111\"")
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -91,4 +96,7 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    // Ads
+    implementation("com.google.android.gms:play-services-ads:25.5.0")
 }
