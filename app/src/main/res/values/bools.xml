@@ -1,4 +1,0 @@
-<resources>
-    <!-- Light mode: status bar icons should be dark -->
-    <bool name="is_light_status_bar_icons">true</bool>
-</resources>
