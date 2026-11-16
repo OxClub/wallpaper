@@ -1,16 +1,53 @@
-# Wallpaper HD 4K
+# Space & AMOLED Wallpapers (Wyrix)
 
-Android wallpaper app (Kotlin) that pulls **live** photos from the [Pixabay API](https://pixabay.com/api/docs/)
-across 12 categories (nature, space, animals, abstract, etc.), each paginated — so total browsable
-wallpapers comfortably exceed **2,000+**, all HD/4K resolution, with an optional "4K Only" filter.
-Pixabay content is free for commercial use under Pixabay's content license.
+Android wallpaper app (Kotlin). Wallpapers are loaded **live** from free sources and mixed together:
 
-Features: category browsing, search, infinite scroll, full-screen pinch-zoom preview,
-Set Wallpaper (Home / Lock / Both), Download to gallery.
+| Source | Key | Used for | Licence / credit shown |
+|---|---|---|---|
+| [Pixabay](https://pixabay.com/api/docs/) | yes (free) | all search categories | Pixabay Content License, "Photo by X on Pixabay" |
+| [Pexels](https://www.pexels.com/api/) | optional (free) | portrait photos, AMOLED/dark/3D, **original full-size files** | Pexels License, "Photo by X on Pexels" |
+| [NASA Image and Video Library](https://images.nasa.gov) | no | Space, Galaxy, Nebula, Planets, Moon, Sun, Earth, AMOLED; **original full-size files** | NASA media guidelines, "Image: NASA / center" |
+| [NASA SDO](https://sdo.gsfc.nasa.gov/data/) | no | **Live Sun** images (10 wavelengths, refreshed every ~30 min) | "NASA/SDO and the AIA, EVE and HMI science teams" |
+| [ESA/Hubble Picture of the Week](https://esahubble.org/images/potw/) | no | Space, Hubble & Webb | CC BY 4.0, "ESA/Hubble & NASA" + link to full credit |
+| [ESA/Webb Picture of the Month](https://esawebb.org/images/potm/) | no | Space, Hubble & Webb | CC BY 4.0, "ESA/Webb, NASA & CSA" + link to full credit |
+| [ESO Picture of the Week](https://www.eso.org/public/images/potw/) | no | Night Sky | CC BY 4.0, "ESO" + link to full credit |
 
-## 1. Get a free Pixabay API key
-Sign up at https://pixabay.com/accounts/register/ then grab your key at
-https://pixabay.com/api/docs/ (top of the page, after login). Free tier is fine for this app.
+Categories: Space, Hubble & Webb, Galaxy, Nebula, Planets, Moon, Sun, Earth, Night Sky, AMOLED, Dark, Neon, 3D,
+Abstract, Minimal, Favorites.
+
+Features: category browsing, search (Pixabay, Pexels, NASA), infinite scroll, full-screen preview that matches the
+final crop, **AMOLED black switch**, **Favorites** (saved on device), Set Wallpaper (Home / Lock / Both),
+Download, per-image credit (tap to open the original page) and a Credits dialog (tap the footer).
+
+### How the ESA / ESO / SDO sources work
+- ESA/Hubble, ESA/Webb and ESO are read from their official RSS picture feeds (about the latest pictures,
+  paged locally). Set/Download tries the bigger `large` file for ESA and falls back to the 1280px `screen` file.
+  ESO uses the 1280px file. These feeds cannot be searched by keyword, so they only appear in categories.
+- SDO "latest" images are square with a black background, so they are fitted on black instead of cropped.
+- CC BY 4.0 needs a visible credit and a note when changed: the credit line is always shown on the wallpaper
+  screen and the Credits dialog says images may be cropped or darkened.
+
+### Quality note (please read before writing the Play listing)
+Pixabay's API only serves up to ~1280px images, so Pixabay wallpapers are **not 4K**. Pexels and NASA
+wallpapers use the original full-resolution file when you tap Set / Download. The old "4K Only" filter was
+removed because it did not exist in the UI and could not be honest for Pixabay. ESA and ESO files are 1280px
+(ESA may load a larger file). In the listing say "HD" and "full-resolution originals from NASA and Pexels",
+not blanket "4K".
+
+### AMOLED mode
+Colors at or below 28/255 become pure black and the rest is stretched back to full range, live in the preview
+and when setting the wallpaper. The switch starts ON inside the AMOLED category. Change `AMOLED_THRESHOLD`
+in `WallpaperDetailActivity.kt` to make it stronger or weaker.
+
+### Adding categories or sources
+- New category: add a `Category(...)` to `WallpaperRepository.categories` (one line).
+- New source: add a value to `ImageSource`, a fetch function + mapper in `WallpaperRepository`, and a credit
+  line in `strings.xml`. Always check the source's license and attribution rules first.
+
+## 1. Get free API keys
+- **Pixabay (required):** https://pixabay.com/api/docs/ (key is at the top of the page after login).
+- **Pexels (optional):** https://www.pexels.com/api/ . Without it the app still works with Pixabay + NASA.
+- **NASA:** no key.
 
 ## 2. Push this project into your existing repo
 ```bash
@@ -28,6 +65,7 @@ In your repo: **Settings → Secrets and variables → Actions → New repositor
 | Secret name | Value |
 |---|---|
 | `PIXABAY_API_KEY` | your Pixabay API key from step 1 |
+| `PEXELS_API_KEY` | your Pexels key (optional, can be left unset) |
 | `KEYSTORE_BASE64` | base64 of your release keystore (see step 4) |
 | `KEYSTORE_PASSWORD` | your keystore password |
 | `KEY_ALIAS` | your key alias |
@@ -65,9 +103,10 @@ then open the project in Android Studio (Hedgehog or newer) and let it sync/buil
 
 ## Project structure
 ```
-app/src/main/java/com/oxclub/wallpaper/
-├── model/            Pixabay data models
-├── network/          Retrofit API + repository (multi-category pagination)
+app/src/main/java/com/wyrix/wallpaper/
+├── model/            WallpaperItem + Pixabay/Pexels/NASA response models
+├── network/          Retrofit APIs + WallpaperRepository (categories, mixing, credits)
+├── data/             FavoritesStore (on-device favorites)
 └── ui/               MainActivity, WallpaperDetailActivity, adapters
 ```
 

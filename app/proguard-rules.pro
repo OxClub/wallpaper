@@ -1,3 +1,6 @@
--keep class com.oxclub.wallpaper.model.** { *; }
+-keep,allowobfuscation class com.wyrix.wallpaper.model.**
+-keepclassmembers class com.wyrix.wallpaper.model.** { <init>(...); <fields>; }
+-keepattributes Signature, *Annotation*
 -dontwarn okhttp3.**
 -dontwarn retrofit2.**
+-keepattributes InnerClasses, EnclosingMethod

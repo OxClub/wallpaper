@@ -14,19 +14,23 @@ if (localPropsFile.exists()) {
 // CI passes the key as a Gradle property; local dev reads it from local.properties
 val pixabayApiKey: String = (project.findProperty("PIXABAY_API_KEY") as String?)
     ?: (localProps.getProperty("pixabay.api.key") ?: "")
+// Optional. Free key from https://www.pexels.com/api/ . Leave empty to skip Pexels.
+val pexelsApiKey: String = (project.findProperty("PEXELS_API_KEY") as String?)
+    ?: (localProps.getProperty("pexels.api.key") ?: "")
 
 android {
-    namespace = "com.oxclub.wallpaper"
+    namespace = "com.wyrix.wallpaper"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.oxclub.wallpaper"
+        applicationId = "com.wyrix.wallpaper"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 6
+        versionName = "1.1.0"
 
         buildConfigField("String", "PIXABAY_API_KEY", "\"$pixabayApiKey\"")
+        buildConfigField("String", "PEXELS_API_KEY", "\"$pexelsApiKey\"")
         // Real ad unit ID is only used in release builds. Debug builds use Google's
         // official public test banner ID to avoid serving live ads / invalid traffic
         // during development, per AdMob policy.
@@ -50,6 +54,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
         }

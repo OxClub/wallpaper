@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Wallpaper HD 4K</string>
+    <string name="search_hint">Search space, AMOLED, 3D…</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
+    <string name="download">Download</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="both_screens">Home + Lock Screen</string>
+    <string name="choose_wallpaper_for">Set wallpaper for</string>
+    <string name="wallpaper_set_success">Wallpaper set successfully</string>
+    <string name="wallpaper_set_failed">Failed to set wallpaper</string>
+    <string name="download_started">Downloading wallpaper…</string>
+    <string name="download_failed">Download failed</string>
+    <string name="no_results">No wallpapers found</string>
+    <string name="no_favorites">No favorites yet.\nTap the heart on a wallpaper to save it.</string>
+    <string name="amoled_black">AMOLED black (saves battery)</string>
+    <string name="add_favorite">Add to favorites</string>
+    <string name="remove_favorite">Remove from favorites</string>
+    <string name="favorite_added">Added to favorites</string>
+    <string name="favorite_removed">Removed from favorites</string>
+
+    <!-- Credits -->
+    <string name="credit_footer">Images: NASA · ESA · ESO · Pixabay — tap for credits</string>
+    <string name="credit_footer_pexels">Images: NASA · ESA · ESO · Pixabay · Pexels — tap for credits</string>
+    <string name="credits_title">Image credits</string>
+    <string name="credit_pixabay"><![CDATA[<b>Pixabay</b> – images from <a href="https://pixabay.com">pixabay.com</a> and its contributors, under the <a href="https://pixabay.com/service/license-summary/">Pixabay Content License</a>.]]></string>
+    <string name="credit_pexels"><![CDATA[<b>Pexels</b> – photos from <a href="https://www.pexels.com">pexels.com</a> and their photographers, under the <a href="https://www.pexels.com/license/">Pexels License</a>.]]></string>
+    <string name="credit_nasa"><![CDATA[<b>NASA</b> – images from the <a href="https://images.nasa.gov">NASA Image and Video Library</a>, used under the <a href="https://www.nasa.gov/nasa-brand-center/images-and-media/">NASA Media Usage Guidelines</a>.]]></string>
+    <string name="credit_sdo"><![CDATA[<b>NASA Solar Dynamics Observatory (SDO)</b> – live Sun images from <a href="https://sdo.gsfc.nasa.gov">sdo.gsfc.nasa.gov</a>. Courtesy of NASA/SDO and the AIA, EVE and HMI science teams.]]></string>
+    <string name="credit_esa"><![CDATA[<b>ESA/Hubble and ESA/Webb</b> – pictures from <a href="https://esahubble.org">esahubble.org</a> and <a href="https://esawebb.org">esawebb.org</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Credit: ESA/Hubble &amp; NASA, ESA/Webb, NASA &amp; CSA, plus the extra credits on each image page.]]></string>
+    <string name="credit_eso"><![CDATA[<b>ESO</b> – pictures from <a href="https://www.eso.org">eso.org</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Credit: ESO, plus the extra credits on each image page. See <a href="https://www.eso.org/public/copyright/">eso.org/public/copyright</a>.]]></string>
+    <string name="credit_note">Images may be cropped, resized or darkened (AMOLED mode) when set as a wallpaper. NASA, ESA and ESO do not endorse this app. Each wallpaper shows its photographer or source. Tap the credit on the wallpaper screen to open the original page with the full credit.</string>
+</resources>
